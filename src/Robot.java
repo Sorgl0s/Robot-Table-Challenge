@@ -2,11 +2,14 @@ public class Robot {
     private Point location;
     private Directions direction;
     private Table table;
+    public final int id;
+    private static int numRobots = 0;
 
     public Robot(Point spawnpoint, Directions direction, Table table) {
         location = spawnpoint;
         this.direction = direction;
         this.table = table;
+        this.id = ++numRobots;
     }
 
     public void move(int distance) {
@@ -18,16 +21,16 @@ public class Robot {
     }
 
     public void turn(String turningDirection) {
-        if (turningDirection.equals("LEFT")) {
+        if (turningDirection.equals("left")) {
             direction = direction.turnLeft();
         }
-        if (turningDirection.equals("RIGHT")) {
+        if (turningDirection.equals("right")) {
             direction = direction.turnRight();
         }
     }
 
     @Override
     public String toString() {
-        return location.x + "," + location.y + "," + direction.name();
+        return "Robot " + id + ": " + location.x + "," + location.y + "," + direction.name();
     }
 }
